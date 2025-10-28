@@ -1,13 +1,14 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.utils.translation import gettext as _
+
 from .models import User
 
 admin.site.register(User, UserAdmin)
 
 
 @admin.register(User)
-class UserAdmin(DjangoUserAdmin):
-   """Define admin model for custom User model with no email field."""
+class UserAdmin(UserAdmin):
 
    fieldsets = (
        (None, {"fields": ("email", "password")}),

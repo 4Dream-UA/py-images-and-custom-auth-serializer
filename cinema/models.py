@@ -43,7 +43,7 @@ def create_custom_path(instance, path):
 
     return os.path.join(
         "uploads/images/",
-        f"{slugify(instance.title)}--{uuid.uuid4()}{ext}",
+        f"{slugify(instance.title)}-{uuid.uuid4()}{ext}",
     )
 
 class Movie(models.Model):
@@ -52,7 +52,7 @@ class Movie(models.Model):
     duration = models.IntegerField()
     genres = models.ManyToManyField(Genre)
     actors = models.ManyToManyField(Actor)
-    image = models.ImageField(null=True, upload_to=create_custom_path("Movie", "media"))
+    image = models.ImageField(null=True, upload_to=create_custom_path)
 
     class Meta:
         ordering = ["title"]
